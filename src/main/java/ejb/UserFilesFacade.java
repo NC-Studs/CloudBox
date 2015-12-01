@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class UserFilesFacade extends AbstractFacade<UserFiles> implements UserFilesFacadeLocal {
-    @PersistenceContext(unitName = "ru.nc_cloudbox_war_1.0-SNAPSHOTPU")
+    @PersistenceContext(unitName = "oraclePU")
     private EntityManager em;
 
     @Override

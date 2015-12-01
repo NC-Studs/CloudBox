@@ -26,20 +26,25 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.eclipse.persistence.annotations.Cache;
 
 /**
  *
  * @author victori
  */
 @Entity
-@Table(name = "FILE")
+@Table(name = "FILE_TABLE")
+@Cache(
+        alwaysRefresh = true,
+        refreshOnlyIfNewer = true
+)
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "File.findAll", query = "SELECT f FROM File f"),
     @NamedQuery(name = "File.findByIdFile", query = "SELECT f FROM File f WHERE f.idFile = :idFile"),
     @NamedQuery(name = "File.findByFilename", query = "SELECT f FROM File f WHERE f.filename = :filename"),
     @NamedQuery(name = "File.findByExt", query = "SELECT f FROM File f WHERE f.ext = :ext"),
-    @NamedQuery(name = "File.findByDate", query = "SELECT f FROM File f WHERE f.date = :date"),
+    @NamedQuery(name = "File.findByDateFile", query = "SELECT f FROM File f WHERE f.datefile = :datefile"),
     @NamedQuery(name = "File.findByHash", query = "SELECT f FROM File f WHERE f.hash = :hash")})
 public class File implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -61,9 +66,9 @@ public class File implements Serializable {
     private String ext;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "DATE")
+    @Column(name = "DATEFILE")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private Date datefile;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 1000)
@@ -86,7 +91,7 @@ public class File implements Serializable {
         this.idFile = idFile;
         this.filename = filename;
         this.ext = ext;
-        this.date = date;
+        this.datefile = date;
         this.hash = hash;
     }
 
@@ -114,12 +119,12 @@ public class File implements Serializable {
         this.ext = ext;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDateFile() {
+        return datefile;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateFile(Date date) {
+        this.datefile = date;
     }
 
     public String getHash() {
@@ -169,7 +174,7 @@ public class File implements Serializable {
 
     @Override
     public String toString() {
-        return "filters.File[ idFile=" + idFile + " ]";
+        return "filters.Filetable[ idFile=" + idFile + " ]";
     }
     
 }

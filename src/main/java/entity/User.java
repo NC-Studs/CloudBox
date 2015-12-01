@@ -21,13 +21,18 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.eclipse.persistence.annotations.Cache;
 
 /**
  *
  * @author victori
  */
 @Entity
-@Table(name = "USER")
+@Table(name = "USERTABLE")
+@Cache(
+        alwaysRefresh = true,
+        refreshOnlyIfNewer = true
+)
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
@@ -161,7 +166,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "filters.User[ idUser=" + idUser + " ]";
+        return "filters.USERTABLE[ idUser=" + idUser + " ]";
     }
     
 }

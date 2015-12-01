@@ -21,6 +21,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.eclipse.persistence.annotations.Cache;
 
 /**
  *
@@ -28,6 +29,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "USER_FILES")
+@Cache(
+        alwaysRefresh = true,
+        refreshOnlyIfNewer = true
+)
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UserFiles.findAll", query = "SELECT u FROM UserFiles u"),

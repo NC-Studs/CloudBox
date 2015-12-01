@@ -5,7 +5,10 @@
  */
 package rs.service;
 
+import ejb.UserFacadeLocal;
 import entity.User;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -23,8 +26,8 @@ import javax.ws.rs.core.MediaType;
 @Path("user")
 public class UserResource {
 
-    
-
+    @EJB
+    UserFacadeLocal user;
     
     @Context
     private UriInfo context;
@@ -37,18 +40,28 @@ public class UserResource {
 
     /**
      * Retrieves representation of an instance of rs.service.UserResource
+     *
      * @return an instance of java.lang.String
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson() {
-        
+
         //TODO return proper representation object
         throw new UnsupportedOperationException();
     }
 
+    @GET
+    @Path("all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<User> getAllUsers() {
+        
+        return user.findAll();
+    }
+
     /**
      * PUT method for updating or creating an instance of UserResource
+     *
      * @param content representation for the resource
      */
     @PUT
