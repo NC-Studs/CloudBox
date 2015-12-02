@@ -7,56 +7,31 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <head>
         <meta charset="utf-8"/>
-        <title>Авторизация - база УЦ</title>
+        <title>Авторизация Cloud Box</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-        <script type="text/javascript" src="libs/jQuery-2.1.4/jquery-2.1.4.min.js"/>
-        <script type="text/javascript" src="libs/jQuery-2.1.4/jquery.backstretch.min.js"/>
-        <script type="text/javascript" src="libs/Bootstrap-3.3.5/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="libs/Bootstrap-3.3.5/css/bootstrap.min.css"/>
+        <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="style.css" rel="stylesheet"/>
-        <link rel="icon" href="ico/favicon.ico"/>
-        <!--window.location.href = window.location.href;-->
-
-    </head>  
-
+        <link href="mstyle.css" rel="stylesheet"/>
+    </head>   
     <body>
-        <div class="col-md-3 col-xs-8 col-xs-offset-2 col-sm-5 col-sm-offset-6 col-md-offset-8 marg-top">
-            <div class="panel panel-primary">
-                <div class="panel-heading"> <strong class="" style="text-align: center">Вход - просмотр заявок в УЦ</strong>
-                </div>
-                <div class="panel-body">
-                    <h:form class="form-horizontal" role="form" >   
-                        <div class="form-group">
-                            <label for="username" class="col-sm-3 control-label">Логин</label>
-                            <div class="col-sm-9">
-                                <h:inputText value="#{bean1.name}" id="username" class="form-control" pt:placeholder ="Логин"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="pass" class="col-sm-3 control-label">Пароль</label>
-                            <div class="col-sm-9">
-                                <h:inputSecret value="#{bean1.pass}" id="pass" class="form-control" pt:placeholder="Пароль"/>
-                            </div>
-                        </div>
-                        <div class="form-group last">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <h:commandButton  class="btn btn-primary btn-lg btn-block" value="Войти" action="#{bean1.action()}">
-                                    
-                                </h:commandButton>
-                            </div>
-                        </div>
-                    </h:form>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-md-offset-4">
+                    <div class="account-wall">
+                        <img class="profile-img" src="libs/img/AuthHead.png" alt=""/>
+                        <h:form class="form-signin">
+                            <h:inputText class="form-control" id="username" value="#{bean1.username}" pt:placeholder="Логин"/>
+                            <h:inputSecret class="form-control" id="pass" value="#{bean1.pass}" pt:placeholder="Пароль"/>
+                            <h:commandButton class="btn btn-lg btn-m-success my_pad" value="Войти" action="#{bean1.login()}"/>
+                            <h:commandButton class="btn btn-lg btn-m-default" value="Зарегистрироваться" action="#{bean1.goReg()}"/>
+                        </h:form>
+                    </div>     
                 </div>
             </div>
-            <c:if test="#{bean1.isShowErrorMessage()}">
-                <h4><p  class="label label-danger col-xs-12">Введены неверный логин или пароль</p></h4>
-            </c:if>
-
-           
-            
         </div>
+        
+        <script src="libs/js/plugins/jquery.min.js"></script>
+        <script src="libs/bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
-

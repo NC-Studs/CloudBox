@@ -1,0 +1,24 @@
+{
+    "decimal":        "",
+    "emptyTable":     "Файлы не были загружены",
+    "info":           "Количество файлов _TOTAL_",
+    "infoEmpty":      "",
+    "infoFiltered":   "(Фильтрация из _MAX_ записей)",
+    "infoPostFix":    "",
+    "thousands":      ",",
+    "lengthMenu":     "Показать _MENU_ записей",
+    "loadingRecords": "Загрузка...",
+    "processing":     "Обработка...",
+    "search":         "Поиск:",
+    "zeroRecords":    "Нет подходящий записей",
+    "paginate": {
+        "first":      "Первая",
+        "last":       "Последняя",
+        "next":       "Следующая",
+        "previous":   "Предыдущая"
+    },
+    "aria": {
+        "sortAscending":  ": нажмите для сортировки по возрастанию",
+        "sortDescending": ": нажмите для сортировки по убыванию"
+    }
+}

@@ -9,61 +9,61 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import org.eclipse.persistence.annotations.Cache;
 
 /**
  *
- * @author victori
+ * @author Andrew
  */
 @Entity
 @Table(name = "ROLE")
-@Cache(
-        alwaysRefresh = true,
-        refreshOnlyIfNewer = true
-)
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"),
     @NamedQuery(name = "Role.findByIdRole", query = "SELECT r FROM Role r WHERE r.idRole = :idRole"),
     @NamedQuery(name = "Role.findByName", query = "SELECT r FROM Role r WHERE r.name = :name")})
 public class Role implements Serializable {
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID_ROLE")
-    private BigDecimal idRole;
-    @Size(max = 20)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQROLE")
+    @SequenceGenerator(initialValue = 1, sequenceName = "SEQROLE", allocationSize = 1, name = "SEQROLE")
+    private Long idRole;
+    @Size(max = 255)
     @Column(name = "NAME")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idRole")
+    @OneToMany(mappedBy = "idRole")
     private Collection<UserRole> userRoleCollection;
 
     public Role() {
     }
 
-    public Role(BigDecimal idRole) {
+    public Role(Long idRole) {
         this.idRole = idRole;
     }
 
-    public BigDecimal getIdRole() {
+    public Long getIdRole() {
         return idRole;
     }
 
-    public void setIdRole(BigDecimal idRole) {
+    public void setIdRole(Long idRole) {
         this.idRole = idRole;
     }
 
@@ -106,7 +106,7 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        return "filters.Role[ idRole=" + idRole + " ]";
+        return "nc.cloudbox2.Role[ idRole=" + idRole + " ]";
     }
-    
+
 }
